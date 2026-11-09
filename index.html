@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Credit Review Intake — Kristal J Consulting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wordmark">Kristal J Consulting</div>
+  <div class="masthead-note">Private client intake</div>
+</header>
+
+<main class="shell">
+
+  <aside class="rail" aria-label="Progress">
+    <ol class="steps">
+      <li class="step is-current" data-step="1"><span class="step-name">About you</span><span class="step-sub">Who we're working with</span></li>
+      <li class="step" data-step="2"><span class="step-name">Your goal</span><span class="step-sub">Where this needs to take you</span></li>
+      <li class="step" data-step="3"><span class="step-name">Credit access</span><span class="step-sub">How we read your reports</span></li>
+      <li class="step" data-step="4"><span class="step-name">Agreements</span><span class="step-sub">Permission and terms</span></li>
+    </ol>
+    <p class="rail-foot">Everything here is encrypted and seen only by Kristal J Consulting.</p>
+  </aside>
+
+  <section class="sheet">
+
+    <!-- STEP 1 -->
+    <form class="panel is-active" id="panel-1" data-panel="1" novalidate>
+      <h1 class="panel-title">Let's start with you.</h1>
+      <p class="panel-lede">We match this to your credit file, so use the name and address your lenders know.</p>
+
+      <div class="grid">
+        <label class="field col-6"><span>Full legal name</span><input name="full_name" autocomplete="name" required></label>
+        <label class="field col-6"><span>Date of birth</span><input name="dob" type="date" required></label>
+        <label class="field col-6"><span>Email</span><input name="email" type="email" autocomplete="email" required></label>
+        <label class="field col-6"><span>Mobile</span><input name="phone" type="tel" autocomplete="tel" required></label>
+        <label class="field col-12"><span>Current street address</span><input name="address1" autocomplete="address-line1" required></label>
+        <label class="field col-5"><span>City</span><input name="city" autocomplete="address-level2" required></label>
+        <label class="field col-3"><span>State</span><input name="state" autocomplete="address-level1" maxlength="2" required></label>
+        <label class="field col-4"><span>ZIP</span><input name="zip" autocomplete="postal-code" inputmode="numeric" required></label>
+        <fieldset class="field col-12 choices">
+          <legend>How did you come to KJC?</legend>
+          <div>
+          <label class="chip"><input type="radio" name="source" value="lending" required><span>Financing / loan</span></label>
+          <label class="chip"><input type="radio" name="source" value="real_estate"><span>Real estate</span></label>
+          <label class="chip"><input type="radio" name="source" value="business"><span>Business advisory</span></label>
+          <label class="chip"><input type="radio" name="source" value="referral"><span>Referral</span></label>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn-primary" type="submit">Continue</button>
+      </div>
+    </form>
+
+    <!-- STEP 2 — AI goal interview -->
+    <form class="panel" id="panel-2" data-panel="2" novalidate>
+      <h1 class="panel-title">What are you trying to get to?</h1>
+      <p class="panel-lede">Say it the way you'd say it to a friend. A few follow-up questions will turn it into a target a lender can work with.</p>
+
+      <div class="interview" id="interview">
+        <label class="field col-12 field-tall">
+          <span>In your own words</span>
+          <textarea name="goal_raw" rows="4" placeholder="Build a legacy for my family. Stop funding other people's deals and do my own." required></textarea>
+        </label>
+        <div class="followups" id="followups" hidden></div>
+        <div class="target" id="target" hidden>
+          <div class="target-label">Your working target</div>
+          <p class="target-text" id="target-text"></p>
+          <ul class="target-meta" id="target-meta"></ul>
+          <p class="target-note">This is a starting point. It gets sharper as your reports come in.</p>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn-ghost" type="button" data-back>Back</button>
+        <button class="btn btn-primary" type="submit" id="goal-next">Ask me the follow-ups</button>
+      </div>
+    </form>
+
+    <!-- STEP 3 -->
+    <form class="panel" id="panel-3" data-panel="3" novalidate>
+      <h1 class="panel-title">Your credit reports.</h1>
+      <p class="panel-lede">You enroll once with MyScoreIQ through the KJC link. We log in and pull your three-bureau FICO reports each month for as long as we're working together. You never have to send us anything.</p>
+
+      <ol class="howto">
+        <li>Open the KJC enrollment link: <a id="enroll-link" href="#" target="_blank" rel="noopener">myscoreiq.com</a></li>
+        <li>Choose the Max plan and finish enrollment.</li>
+        <li>Come back here and enter the username and password you just created.</li>
+      </ol>
+
+      <div class="grid">
+        <label class="field col-6"><span>MyScoreIQ username</span><input name="msiq_user" autocomplete="off" autocapitalize="off" spellcheck="false" required></label>
+        <label class="field col-6"><span>MyScoreIQ password</span><input name="msiq_pass" type="password" autocomplete="off" required></label>
+        <label class="check col-12"><input type="checkbox" name="enrolled_via_kjc" required><span>I enrolled through the KJC link above.</span></label>
+      </div>
+      <p class="fine">Your login is encrypted before it leaves this page and is used only to view your credit reports.</p>
+
+      <div class="actions">
+        <button class="btn btn-ghost" type="button" data-back>Back</button>
+        <button class="btn btn-primary" type="submit">Continue</button>
+      </div>
+    </form>
+
+    <!-- STEP 4 -->
+    <form class="panel" id="panel-4" data-panel="4" novalidate>
+      <h1 class="panel-title">Two agreements, then we begin.</h1>
+      <p class="panel-lede">Read each one. Sign by typing your full legal name.</p>
+
+      <article class="doc">
+        <h2>Authorization to access credit monitoring account</h2>
+        <div class="doc-body" id="doc-authorization">
+          <!-- WORDING PENDING APPROVAL — replaced by approved text -->
+          <p><em>Authorization wording to be inserted after approval.</em></p>
+        </div>
+        <label class="field sign"><span>Type your full legal name to sign</span><input name="sig_authorization" autocomplete="off" required></label>
+      </article>
+
+      <article class="doc">
+        <h2>Credit services agreement</h2>
+        <div class="doc-body" id="doc-agreement">
+          <!-- WORDING PENDING APPROVAL — replaced by approved text -->
+          <p><em>Agreement wording to be inserted after approval.</em></p>
+        </div>
+        <label class="field sign"><span>Type your full legal name to sign</span><input name="sig_agreement" autocomplete="off" required></label>
+      </article>
+
+      <p class="fine" id="sign-meta"></p>
+
+      <div class="actions">
+        <button class="btn btn-ghost" type="button" data-back>Back</button>
+        <button class="btn btn-primary" type="submit" id="submit-all">Sign and submit</button>
+      </div>
+    </form>
+
+    <!-- DONE -->
+    <div class="panel" id="panel-done" data-panel="done">
+      <h1 class="panel-title">Received.</h1>
+      <p class="panel-lede">Your first review starts with your next report pull. You'll hear from Kristal J Consulting with findings and a plan built around your target.</p>
+    </div>
+
+  </section>
+</main>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
