@@ -42,6 +42,8 @@ create table signatures (
   document text not null,                  -- authorization | agreement
   document_version text not null,
   signed_name text not null,
+  initials jsonb not null default '{}',     -- per-clause initials
+  esign_consent boolean not null default false,
   signed_at timestamptz not null,
   ip inet,
   user_agent text

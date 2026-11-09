@@ -3,7 +3,7 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { createClient } from "jsr:@supabase/supabase-js@2";
 
-const DOC_VERSION = "2026-11-draft"; // bump when agreement wording changes
+const DOC_VERSION = { authorization: "2026-11-09", agreement: "draft" }; // bump when agreement wording changes
 
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response("ok", { headers: cors });
@@ -36,8 +36,10 @@ Deno.serve(async (req) => {
     const sigs = ["authorization", "agreement"].map(d => ({
       client_id: client.id,
       document: d,
-      document_version: DOC_VERSION,
+      document_version: DOC_VERSION[d as "authorization" | "agreement"],
       signed_name: body.signatures[d].name,
+      initials: body.signatures[d].initials ?? {},
+      esign_consent: !!body.signatures.esign_consent,
       signed_at: body.signatures[d].signed_at,
       ip,
       user_agent: body.signatures.user_agent

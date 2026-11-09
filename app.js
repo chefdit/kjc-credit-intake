@@ -26,9 +26,9 @@ $$("[data-back]").forEach(b => b.addEventListener("click", () => show(state.step
 /* ---------- validation ---------- */
 function validate(form) {
   let ok = true;
-  $$(".field, .choices", form).forEach(f => f.classList.remove("is-invalid"));
+  $$(".field, .choices, .initial, .check", form).forEach(f => f.classList.remove("is-invalid"));
   $$("[required]", form).forEach(el => {
-    const wrap = el.closest(".field, .choices, .check");
+    const wrap = el.closest(".initial, .field, .choices, .check");
     let valid = el.type === "radio"
       ? !!form.querySelector(`[name="${el.name}"]:checked`)
       : el.type === "checkbox" ? el.checked : el.checkValidity();
@@ -153,6 +153,18 @@ finalForm.addEventListener("submit", async e => {
     return;
   }
 
+  const initials = initialsOf(state.data.full_name);
+  const initKeys = $$(".initial input", finalForm).map(i => i.name);
+  const badInit = initKeys.filter(k => {
+    const v = (state.data[k] || "").toUpperCase().replace(/[^A-Z]/g, "");
+    return v.length < 2 || v[0] !== initials[0] || v[v.length - 1] !== initials[initials.length - 1];
+  });
+  if (badInit.length) {
+    badInit.forEach(k => finalForm.querySelector(`[name="${k}"]`).closest(".initial").classList.add("is-invalid"));
+    banner(finalForm, `Initials must match your name (${initials}).`);
+    return;
+  }
+
   const btn = $("#submit-all");
   btn.disabled = true; btn.textContent = "Submitting…";
   try {
@@ -170,7 +182,12 @@ finalForm.addEventListener("submit", async e => {
           enrolled_via_kjc: true
         },
         signatures: {
-          authorization: { name: state.data.sig_authorization, signed_at: new Date().toISOString() },
+          esign_consent: true,
+          authorization: {
+            name: state.data.sig_authorization,
+            signed_at: new Date().toISOString(),
+            initials: Object.fromEntries(initKeys.filter(k => k.startsWith("init_auth")).map(k => [k, state.data[k].toUpperCase()]))
+          },
           agreement: { name: state.data.sig_agreement, signed_at: new Date().toISOString() },
           user_agent: navigator.userAgent
         }
@@ -186,6 +203,14 @@ finalForm.addEventListener("submit", async e => {
   }
 });
 
+$$(".initial input").forEach(i => i.addEventListener("input", () => {
+  i.value = i.value.toUpperCase().replace(/[^A-Z]/g, "");
+  i.classList.toggle("is-filled", i.value.length >= 2);
+}));
+
 /* ---------- utils ---------- */
+function initialsOf(name = "") {
+  return name.trim().split(/\s+/).filter(Boolean).map(w => w[0].toUpperCase()).join("");
+}
 function pick(o, keys) { return Object.fromEntries(keys.map(k => [k, o[k]])); }
 function escapeHtml(s) { return s.replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c])); }

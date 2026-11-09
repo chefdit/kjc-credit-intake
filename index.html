@@ -113,14 +113,61 @@
     <!-- STEP 4 -->
     <form class="panel" id="panel-4" data-panel="4" novalidate>
       <h1 class="panel-title">Two agreements, then we begin.</h1>
-      <p class="panel-lede">Read each one. Sign by typing your full legal name.</p>
+      <p class="panel-lede">Initial each section as you read it, then sign by typing your full legal name.</p>
 
-      <article class="doc">
-        <h2>Authorization to access credit monitoring account</h2>
-        <div class="doc-body" id="doc-authorization">
-          <!-- WORDING PENDING APPROVAL — replaced by approved text -->
-          <p><em>Authorization wording to be inserted after approval.</em></p>
-        </div>
+      <label class="check consent"><input type="checkbox" name="esign_consent" required><span>I agree to sign electronically. My initials and typed name below have the same legal effect as my handwritten signature.</span></label>
+
+      <article class="doc doc-initialed">
+        <h2>Authorization to Access Credit Monitoring Account</h2>
+        <p class="doc-intro">I authorize Kristal J Consulting LLC (&ldquo;KJC&rdquo;) to log in to my MyScoreIQ account using the username and password I provided, for the purposes below.</p>
+
+        <section class="clause">
+          <div class="clause-text">
+            <h3>What KJC may do</h3>
+            <ul>
+              <li>View and download my credit reports and FICO scores from Experian, Equifax and TransUnion.</li>
+              <li>Review them each month while I am a KJC client to prepare findings, recommendations and dispute documents for my approval.</li>
+            </ul>
+          </div>
+          <label class="initial"><span>Initials</span><input name="init_auth_may" maxlength="4" autocomplete="off" required></label>
+        </section>
+
+        <section class="clause">
+          <div class="clause-text">
+            <h3>What KJC will not do</h3>
+            <ul>
+              <li>Change my password, email, phone number, security settings, payment method or plan.</li>
+              <li>Apply for credit, open or close accounts, or contact creditors or credit bureaus in my name without my separate written approval.</li>
+              <li>Share my reports or login with anyone outside KJC without my written approval.</li>
+            </ul>
+          </div>
+          <label class="initial"><span>Initials</span><input name="init_auth_wont" maxlength="4" autocomplete="off" required></label>
+        </section>
+
+        <section class="clause">
+          <div class="clause-text">
+            <h3>My account</h3>
+            <p>I own the MyScoreIQ account and pay its fees directly. KJC is not responsible for MyScoreIQ charges.</p>
+          </div>
+          <label class="initial"><span>Initials</span><input name="init_auth_account" maxlength="4" autocomplete="off" required></label>
+        </section>
+
+        <section class="clause">
+          <div class="clause-text">
+            <h3>Security</h3>
+            <p>KJC stores my login encrypted and uses it only for the purposes above. Copies of reports pulled during my engagement are kept in my client file and deleted on my written request, unless the law requires KJC to keep them.</p>
+          </div>
+          <label class="initial"><span>Initials</span><input name="init_auth_security" maxlength="4" autocomplete="off" required></label>
+        </section>
+
+        <section class="clause">
+          <div class="clause-text">
+            <h3>Ending access</h3>
+            <p>I can revoke this authorization at any time by emailing <a href="mailto:credit@kristaljconsulting.com">credit@kristaljconsulting.com</a> and changing my MyScoreIQ password. KJC will stop accessing the account and delete my stored login within five business days. Access also ends automatically when my engagement with KJC ends.</p>
+          </div>
+          <label class="initial"><span>Initials</span><input name="init_auth_ending" maxlength="4" autocomplete="off" required></label>
+        </section>
+
         <label class="field sign"><span>Type your full legal name to sign</span><input name="sig_authorization" autocomplete="off" required></label>
       </article>
 
