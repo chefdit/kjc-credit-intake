@@ -146,7 +146,7 @@ finalForm.addEventListener("submit", async e => {
   collect(finalForm);
 
   const name = state.data.full_name.toLowerCase().replace(/\s+/g, " ");
-  const bad = ["sig_authorization", "sig_agreement"].filter(k => state.data[k].toLowerCase().replace(/\s+/g, " ") !== name);
+  const bad = ["sig_authorization"].filter(k => state.data[k].toLowerCase().replace(/\s+/g, " ") !== name);
   if (bad.length) {
     bad.forEach(k => finalForm.querySelector(`[name="${k}"]`).closest(".field").classList.add("is-invalid"));
     banner(finalForm, "Signatures must match the full legal name you entered on the first page.");
@@ -188,7 +188,6 @@ finalForm.addEventListener("submit", async e => {
             signed_at: new Date().toISOString(),
             initials: Object.fromEntries(initKeys.filter(k => k.startsWith("init_auth")).map(k => [k, state.data[k].toUpperCase()]))
           },
-          agreement: { name: state.data.sig_agreement, signed_at: new Date().toISOString() },
           user_agent: navigator.userAgent
         }
       }

@@ -8,7 +8,7 @@ Built to be imported into Lovable later.
 1. Client details
 2. Goal interview — client writes their goal in plain words, AI asks 3–5 follow-ups, then writes a lender-ready target
 3. MyScoreIQ login (encrypted at rest; never readable from the browser)
-4. Two e-signatures: account authorization + credit services agreement
+4. Account authorization — initialed by section, e-signed
 
 ## Setup
 1. Create a Supabase project (free tier). Run `supabase/schema.sql` in the SQL editor.
@@ -20,5 +20,4 @@ Built to be imported into Lovable later.
 5. Host the three static files anywhere (GitHub Pages works) at a non-indexed URL, or embed on a hidden page of kristaljconsulting.com.
 
 ## Still to do
-- Approved wording for the two agreements goes in `#doc-authorization` and `#doc-agreement` in `index.html`; bump `DOC_VERSION` in `submit-intake`.
 - Admin view (report upload, AI review, dispute letters, monthly re-review) — next build.

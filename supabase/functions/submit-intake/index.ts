@@ -3,7 +3,7 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { createClient } from "jsr:@supabase/supabase-js@2";
 
-const DOC_VERSION = { authorization: "2026-11-09", agreement: "draft" }; // bump when agreement wording changes
+const DOC_VERSION = { authorization: "2026-11-09" }; // bump when wording changes
 
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response("ok", { headers: cors });
@@ -33,10 +33,10 @@ Deno.serve(async (req) => {
     if (e3) throw e3;
 
     const ip = req.headers.get("x-forwarded-for")?.split(",")[0] ?? null;
-    const sigs = ["authorization", "agreement"].map(d => ({
+    const sigs = ["authorization"].map(d => ({
       client_id: client.id,
       document: d,
-      document_version: DOC_VERSION[d as "authorization" | "agreement"],
+      document_version: DOC_VERSION[d as "authorization"],
       signed_name: body.signatures[d].name,
       initials: body.signatures[d].initials ?? {},
       esign_consent: !!body.signatures.esign_consent,
